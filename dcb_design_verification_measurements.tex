@@ -167,5 +167,58 @@ DCB pilot S/N 007, 008 were used for measurements.
     \caption{Loss of lock transient current. Measured on 007.}
 \end{figure}
 
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}{0.8\linewidth}
+    \begin{tikzpicture}[boximg]
+        \node [anchor=south west] (main) {
+            \includegraphics[width=\linewidth]
+            {./res/current_transient/during_loss_of_lock.jpg}
+        };
+        \begin{scope}[x=(main.south east),y=(main.north west)]
+            \node [draw,red,minimum height=4.5em, minimum width=1.5em]
+                (zoombox1) at (0.52,0.7) {};
+        \end{scope}
+    \end{tikzpicture}
+    \caption{}
+    \end{subfigure}
+    %
+    \\[0.5\baselineskip]
+    %
+    \begin{subfigure}{0.42\linewidth}
+    \begin{tikzpicture}[boximg,red]
+        \node [anchor=south west] (zoom1) {
+            \includegraphics[width=\linewidth]
+                {./res/current_transient/during_loss_of_lock-zoom.jpg}
+        };
+        \draw (zoom1.south west) rectangle (zoom1.north east);
+        \begin{scope}[x=(zoom1.south east),y=(zoom1.north west)]
+            \node [draw,green,minimum height=2em, minimum width=1em]
+                (zoombox2) at (0.5,0.7) {};
+        \end{scope}
+    \end{tikzpicture}
+    \caption{}
+    \end{subfigure}
+    %
+    \hspace{0.04\linewidth}
+    %
+    \begin{subfigure}{0.32\linewidth}
+    \begin{tikzpicture}[boximg,green]
+        \node  (zoom2) {
+            \includegraphics[width=\linewidth]
+                {./res/current_transient/during_loss_of_lock-zoom-zoom.jpg}
+        };
+        \draw (zoom2.south west) rectangle (zoom2.north east);
+    \end{tikzpicture}
+    \caption{}
+    \end{subfigure}
+    %
+    \caption{
+        During loss of lock transient current.
+        DCB 007 in this stage is cleaner than DCB 008.
+        Measured on 007.
+    }
+\end{figure}
+
 
 \end{document}
