@@ -1,0 +1,8 @@
+*.aux
+*.out
+*.log
+*.zip
+*.toc
+*.jpg
+*.pdf
+_minted*
