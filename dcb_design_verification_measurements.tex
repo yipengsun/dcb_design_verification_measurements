@@ -17,6 +17,9 @@
 \usepackage{booktabs}
 \usepackage{siunitx}  % Better kerning
 
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
+
 \usepackage{tikz}
 \tikzset{
     boximg/.style={remember picture,
@@ -55,14 +58,12 @@ the \SI{1.5}{\volt} PSU.
 All the measurements below assume a conversion factor of \SI{1}{\ampere/\volt}.
 DCB pilot S/N 007, 008 were used for measurements.
 
-\subsection{Power off}
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\linewidth]{./res/current_transient/power_off.jpg}
     \caption{Power off transient current. Measured on 007.}
 \end{figure}
 
-\subsection{Power on}
 \begin{figure}[ht]
     \centering
     \begin{subfigure}{0.8\linewidth}
@@ -92,6 +93,15 @@ DCB pilot S/N 007, 008 were used for measurements.
         %\draw (zoom1) -- (zoombox1);
     %\end{tikzpicture}
     \caption{Power on transient current. Measured on 007.}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\linewidth]
+        {./res/current_transient/program_master.jpg}
+    \caption{
+        Program master GBTx (via \itwoc) transient current. Measured on 007.
+    }
 \end{figure}
 
 \end{document}
