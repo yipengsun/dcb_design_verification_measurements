@@ -169,8 +169,22 @@ DCB pilot S/N 007, 008 were used for measurements.
     \caption{}
     \end{subfigure}
     %
-    \caption[Loss of lock transient current]{
-        Loss of lock transient current. Measured on 007.
+    \caption[Loss of lock transient current, unrecoverable]{
+        Loss of lock transient current.
+        This DCB could not regain lock after the connection was restored.
+        Measured on 007.
+    }
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\linewidth]
+        {./res/current_transient/loss_of_lock-recoverable.jpg}
+    \caption[Loss of lock transient current, recoverable]{
+        Loss of lock transient current.
+        Only the data GBTx 5 and 6 were programmed.
+        This DCB regained lock after the connection was restored.
+        Measured on 008.
     }
 \end{figure}
 
@@ -217,12 +231,13 @@ DCB pilot S/N 007, 008 were used for measurements.
         };
         \draw (zoom2.south west) rectangle (zoom2.north east);
     \end{tikzpicture}
-    \caption{}
+    \caption{}\label{DLOL-zz}
     \end{subfigure}
     %
-    \caption[During loss of lock transient current]{
+    \caption[During loss of lock transient current, unrecoverable]{
         During loss of lock transient current.
-        DCB 007 in this stage is cleaner than DCB 008.
+        DCB 007 in this stage is cleaner than DCB 008, but it could not recover
+        after the connection is reestablished.
         Measured on 007.
     }
 \end{figure}
@@ -230,7 +245,43 @@ DCB pilot S/N 007, 008 were used for measurements.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\linewidth]
-        {./res/current_transient/regain_of_lock.jpg}
+        {./res/current_transient/during_loss_of_lock-recoverable.jpg}
+    \caption[During loss of lock transient current, recoverable]{
+        During Loss of lock transient current.
+        This DCB regained lock after the connection was restored.
+        Measured on 008.
+        Note that the timescale is the same as in \autoref{DLOL-zz}.
+    }
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}{0.8\linewidth}
+    \begin{tikzpicture}[boximg]
+        \node [anchor=south west] (main) {
+            \includegraphics[width=\linewidth]
+                {./res/current_transient/regain_of_lock.jpg}
+        };
+        \begin{scope}[x=(main.south east),y=(main.north west)]
+            \node [draw,red,minimum height=5em, minimum width=2em] (zoombox1)
+                at (0.51,0.65) {};
+        \end{scope}
+    \end{tikzpicture}
+    \caption{}
+    \end{subfigure}
+    %
+    \\[0.5\baselineskip]
+    %
+    \begin{subfigure}{0.5\linewidth}
+    \begin{tikzpicture}[boximg,red]
+        \node (zoom1) {
+            \includegraphics[width=\linewidth]
+                {./res/current_transient/regain_of_lock-zoom.jpg}
+        };
+        \draw (zoom1.south west) rectangle (zoom1.north east);
+    \end{tikzpicture}
+    \caption{}
+    \end{subfigure}
     \caption[Regain of lock transient current]{
         Currently 007 cannot regain lock, but 008 can.
         Note that during the loss of lock stage, 008 is much more noisy.
