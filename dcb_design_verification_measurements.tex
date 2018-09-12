@@ -60,13 +60,31 @@ All the measurements below assume a conversion factor of \SI{1}{\ampere/\volt}.
 \begin{figure}[ht]
     \centering
     \begin{subfigure}{0.8\linewidth}
-        \begin{tikzpicture}[boximg, help lines]
-        \node[anchor=south west] (main) {
+    \begin{tikzpicture}[boximg]
+        \node [anchor=south west] (main) {
             \includegraphics[width=\linewidth]
             {./res/current_transient/power_on.jpg}
         };
+        \begin{scope}[x=(main.south east),y=(main.north west)]
+            \node[draw,minimum height=1em, minimum width=1em] (zoombox1)
+            at (0.4,0.2) {};
+        \end{scope}
     \end{tikzpicture}
+    \caption{}
+    \end{subfigure} \\[0.5\baselineskip]
+    \begin{subfigure}{0.6\linewidth}
+    \begin{tikzpicture}[boximg]
+        \node  (zoom1) {
+            \includegraphics[width=\linewidth]
+            {./res/current_transient/power_on-zoom.jpg}
+        };
+        \draw (zoom1.south west) rectangle (zoom1.north east);
+    \end{tikzpicture}
+    \caption{}
     \end{subfigure}
+    \begin{tikzpicture}[overlay,boximg]
+        \draw (zoom1) -- (zoombox1);
+    \end{tikzpicture}
 \end{figure}
 
 \end{document}
