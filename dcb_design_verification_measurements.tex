@@ -20,9 +20,7 @@
 \usepackage{tikz}
 \tikzset{
     boximg/.style={remember picture,
-                   red,
-                   thick,
-                   draw,
+                   ultra thick,
                    inner sep=0pt,
                    outer sep=0pt}
 }
@@ -55,6 +53,7 @@ The probe was warped around the cable which was connected to the positive end of
 the \SI{1.5}{\volt} PSU.
 
 All the measurements below assume a conversion factor of \SI{1}{\ampere/\volt}.
+All measurements are made on DCB pilot S/N 007.
 
 \subsection{Power on}
 \begin{figure}[ht]
@@ -66,14 +65,14 @@ All the measurements below assume a conversion factor of \SI{1}{\ampere/\volt}.
             {./res/current_transient/power_on.jpg}
         };
         \begin{scope}[x=(main.south east),y=(main.north west)]
-            \node[draw,minimum height=1em, minimum width=1em] (zoombox1)
-            at (0.4,0.2) {};
+            \node[draw,orange,minimum height=5em, minimum width=2em] (zoombox1)
+            at (0.5,0.5) {};
         \end{scope}
     \end{tikzpicture}
     \caption{}
     \end{subfigure} \\[0.5\baselineskip]
-    \begin{subfigure}{0.6\linewidth}
-    \begin{tikzpicture}[boximg]
+    \begin{subfigure}{0.5\linewidth}
+    \begin{tikzpicture}[boximg, orange]
         \node  (zoom1) {
             \includegraphics[width=\linewidth]
             {./res/current_transient/power_on-zoom.jpg}
@@ -82,9 +81,10 @@ All the measurements below assume a conversion factor of \SI{1}{\ampere/\volt}.
     \end{tikzpicture}
     \caption{}
     \end{subfigure}
-    \begin{tikzpicture}[overlay,boximg]
-        \draw (zoom1) -- (zoombox1);
-    \end{tikzpicture}
+    %\begin{tikzpicture}[overlay,boximg]
+        %\draw (zoom1) -- (zoombox1);
+    %\end{tikzpicture}
+    \caption{Power on transient current.}
 \end{figure}
 
 \end{document}
