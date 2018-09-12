@@ -53,7 +53,14 @@ The probe was warped around the cable which was connected to the positive end of
 the \SI{1.5}{\volt} PSU.
 
 All the measurements below assume a conversion factor of \SI{1}{\ampere/\volt}.
-All measurements are made on DCB pilot S/N 007.
+DCB pilot S/N 007, 008 were used for measurements.
+
+\subsection{Power off}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\linewidth]{./res/current_transient/power_off.jpg}
+    \caption{Power off transient current. Measured on 007.}
+\end{figure}
 
 \subsection{Power on}
 \begin{figure}[ht]
@@ -65,14 +72,14 @@ All measurements are made on DCB pilot S/N 007.
             {./res/current_transient/power_on.jpg}
         };
         \begin{scope}[x=(main.south east),y=(main.north west)]
-            \node[draw,orange,minimum height=5em, minimum width=2em] (zoombox1)
+            \node[draw,red,minimum height=5em, minimum width=2em] (zoombox1)
             at (0.5,0.5) {};
         \end{scope}
     \end{tikzpicture}
     \caption{}
     \end{subfigure} \\[0.5\baselineskip]
     \begin{subfigure}{0.5\linewidth}
-    \begin{tikzpicture}[boximg, orange]
+    \begin{tikzpicture}[boximg,red]
         \node  (zoom1) {
             \includegraphics[width=\linewidth]
             {./res/current_transient/power_on-zoom.jpg}
@@ -84,7 +91,7 @@ All measurements are made on DCB pilot S/N 007.
     %\begin{tikzpicture}[overlay,boximg]
         %\draw (zoom1) -- (zoombox1);
     %\end{tikzpicture}
-    \caption{Power on transient current.}
+    \caption{Power on transient current. Measured on 007.}
 \end{figure}
 
 \end{document}
