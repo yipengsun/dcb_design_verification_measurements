@@ -48,6 +48,7 @@
 \maketitle
 \hfill\small{\texttt{Rev:~\gitRel~(\gitAbbrevHash)}}
 \tableofcontents
+\listoffigures
 
 
 \section{Transient current}
@@ -61,7 +62,9 @@ DCB pilot S/N 007, 008 were used for measurements.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\linewidth]{./res/current_transient/power_off.jpg}
-    \caption{Power off transient current. Measured on 007.}
+    \caption[Power off transient current]{
+        Power off transient current. Measured on 007.
+    }
 \end{figure}
 
 \begin{figure}[ht]
@@ -95,14 +98,16 @@ DCB pilot S/N 007, 008 were used for measurements.
     %\begin{tikzpicture}[overlay,boximg]
         %\draw (zoom1) -- (zoombox1);
     %\end{tikzpicture}
-    \caption{Power on transient current. Measured on 007.}
+    \caption[Power on transient current]{
+        Power on transient current. Measured on 007.
+    }
 \end{figure}
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\linewidth]
         {./res/current_transient/program_master.jpg}
-    \caption{
+    \caption[Program master GBTx transient current]{
         Program master GBTx (via \itwoc) transient current.
         Measured on 007.
     }
@@ -112,7 +117,7 @@ DCB pilot S/N 007, 008 were used for measurements.
     \centering
     \includegraphics[width=0.8\linewidth]
         {./res/current_transient/program_data.jpg}
-    \caption{
+    \caption[Program data GBTxs transient current]{
         Program all 6 data GBTxs (via GBT-IC) transient current.
         The programmer on MiniDAQ is written in a way such that these data GBTxs
         are programmed one by one.
@@ -164,7 +169,9 @@ DCB pilot S/N 007, 008 were used for measurements.
     \caption{}
     \end{subfigure}
     %
-    \caption{Loss of lock transient current. Measured on 007.}
+    \caption[Loss of lock transient current]{
+        Loss of lock transient current. Measured on 007.
+    }
 \end{figure}
 
 \begin{figure}[ht]
@@ -213,7 +220,7 @@ DCB pilot S/N 007, 008 were used for measurements.
     \caption{}
     \end{subfigure}
     %
-    \caption{
+    \caption[During loss of lock transient current]{
         During loss of lock transient current.
         DCB 007 in this stage is cleaner than DCB 008.
         Measured on 007.
@@ -224,7 +231,7 @@ DCB pilot S/N 007, 008 were used for measurements.
     \centering
     \includegraphics[width=0.8\linewidth]
         {./res/current_transient/regain_of_lock.jpg}
-    \caption{
+    \caption[Regain of lock transient current]{
         Currently 007 cannot regain lock, but 008 can.
         Note that during the loss of lock stage, 008 is much more noisy.
         Measured on 008.
