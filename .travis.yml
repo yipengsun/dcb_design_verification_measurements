@@ -1,0 +1,36 @@
+notifications:
+    email: false
+
+cache:
+    directories:
+        - "$HOME/miniconda"
+        - "$HOME/.cache/Tectonic"
+
+install:
+    - export PATH="$HOME/miniconda/bin:$PATH"
+    - if ! command -v conda > /dev/null; then
+          wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+          bash miniconda.sh -b -p $HOME/miniconda -u;
+          conda config --add channels conda-forge;
+          conda config --set always_yes yes;
+          conda update --all;
+          conda install tectonic;
+      fi
+    - conda info -a
+
+script:
+    - cp ./ci/post-xxx-sample.txt ./.git/hooks/post-checkout
+    - chmod +x ./.git/hooks/post-checkout
+    - git checkout
+    - tectonic ./dcb_design_verification_measurements.tex --print
+
+deploy:
+    provider: releases
+    api_key:
+		secure: "NxUPoRe7/pqW7xwo9S6YdIJZNmBI421CI+bWLkrPL0ARHUFhVz0gr5FGfflphTK2G56kqLvZqDXOIIj/Td55zI+Ta+GjKRHfgqs5htSVX7xGXRwL8Gij4pkOZbyjfrvEl36yxiWlnOenn4unSIwQLKMEk1Sn0mKnChkdZ5B29XNYBkjY1QvmFCuqlLsQveAeEvD+drReBN5RT7BTyTH9SEDI5pwNITbc4R4aGfruU/Zo22ybPU7BUJ15I0ZdXKxIAMyJUgd0jje2k6pfEOW8hxUQJ0kN0JT0VHJUuU2Bqfya76lYlDuA9amZy1xJiQW7s883ynSWZPg3ql5KkshI2xyVi2jhUJ3v8k5Qo0lpNxBAVe3X6l1LahmZQXfe5sJ/IXiL9vKCqeaztU0rdgQR/lzhi3LllT6J+wXqWpc+QtgkS4TgjCoWyjD5tbDgG5CYvVT9LtNdJiv7M9As3zTugzNWvCifcNcDWpp1ab2u+ugWAZpGFS9mTnL9B1+I9+wPfQPWGP9rY6pDeDcbLQjflHFlF5sWZaulUA9ZQ39Prf8ATSvr0qJDFdYLVHBGA2joGdkPR+xOgNQC7D6pUiGjQq5t2Qsru6VcS/+5MEAaIyDx2fCX6mjK1KdGkLuYV3tiSsWxg9UT4coM8oQYnzGQ6JwAhCg2lvdzEwvnju8l9lk="
+    file:
+        - "./dcb_design_verification_measurements.pdf"
+    skip_cleanup: true
+    on:
+        tags: true
+        repo: umd-lhcb/gbtx_communication_doc
