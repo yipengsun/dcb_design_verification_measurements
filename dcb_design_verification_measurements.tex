@@ -59,7 +59,7 @@ The probe was warped around the cable which was connected to the positive end of
 the \SI{1.5}{\volt} PSU.
 
 All the measurements below assume a conversion factor of \SI{1}{\ampere/\volt}.
-DCB pilot S/N 007, 008 were used for measurements.
+DCB S/N pilot 007, 008 were used for measurements.
 
 \begin{figure}[ht]
     \centering
@@ -295,8 +295,9 @@ DCB pilot S/N 007, 008 were used for measurements.
 \section{Transient voltage}
 \subsection{Transient voltage on \SI{1.5}{\volt}}
 We used a differential probe to measure the \SI{1.5}{\volt} rail on the DCB
-directly. We found a particular pair of contact, and handheld the probe to do
-the measurements.
+directly.
+We found a particular pair of contact, and handheld the probe to do the
+measurements.
 
 \begin{figure}[ht]
     \centering
@@ -315,9 +316,12 @@ statement comes from GBTx expert Daniel Hernandez.}
 
 \subsection{Transient voltage on data GBTxs}
 The \texttt{TX\_RDY} signals for all data GBTxs were brought out to the FFC
-breakout boards. We plugged in 2 differential probes on 2 of the breakout
-boards, and measured that signal for data GBTxs 5 and 6. DCB S/N 007, 008 were
-used.
+breakout boards.
+We plugged in 2 differential probes on 2 of the breakout boards, and measured
+that signal for data GBTxs 5 and 6.
+During the measurement, only these 2 data GBTxs were programmed, due to the fact
+that DCB 007 cannot regain lock if all 6 data GBTxs were all programmed.
+DCB S/N pilot 007, 008 were used.
 
 \begin{figure}[ht]
     \centering
