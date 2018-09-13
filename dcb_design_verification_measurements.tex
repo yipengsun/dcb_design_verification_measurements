@@ -16,6 +16,7 @@
 \usepackage{framed}
 \usepackage{booktabs}
 \usepackage{siunitx}  % Better kerning
+\usepackage[section]{placeins}  % Figures can only float within its section
 
 \usepackage{chngcntr}
 \counterwithin{figure}{section}
@@ -286,6 +287,57 @@ DCB pilot S/N 007, 008 were used for measurements.
     \caption[Regain of lock transient current]{
         Currently 007 cannot regain lock, but 008 can.
         Note that during the loss of lock stage, 008 is much more noisy.
+        Measured on 008.
+    }
+\end{figure}
+
+
+\section{Transient voltage}
+\subsection{Transient voltage on \SI{1.5}{\volt}}
+We used a differential probe to measure the \SI{1.5}{\volt} rail on the DCB
+directly. We found a particular pair of contact, and handheld the probe to do
+the measurements.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\linewidth]
+        {./res/voltage_transient/time_out.png}
+    \caption[Voltage transient due to timeout]{
+        We have enabled timeout on master GBTx, and it would kick in every 2
+        seconds.
+        Timeout would reset\protect\footnotemark the GBTx.
+        Measured on 007.
+    }
+\end{figure}
+
+\footnotetext{Not sure if it means that the FSM would go back to state 0. This
+statement comes from GBTx expert Daniel Hernandez.}
+
+\subsection{Transient voltage on data GBTxs}
+The \texttt{TX\_RDY} signals for all data GBTxs were brought out to the FFC
+breakout boards. We plugged in 2 differential probes on 2 of the breakout
+boards, and measured that signal for data GBTxs 5 and 6. DCB S/N 007, 008 were
+used.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\linewidth]
+        {./res/voltage_transient/txrdy.png}
+    \caption[\texttt{TX\_RDY} signal on regain of lock, almost simutaneously]{
+        This DCB was able to regain lock.
+        Only the data GBTx 5 and 6 were programmed.
+        Measured on 007.
+    }
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\linewidth]
+        {./res/voltage_transient/txrdy_recoverable.png}
+    \caption[\texttt{TX\_RDY} signal on regain of lock, larger temperal
+            separation]{
+        This DCB was able to regain lock.
+        Only the data GBTx 5 and 6 were programmed.
         Measured on 008.
     }
 \end{figure}
