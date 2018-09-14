@@ -323,6 +323,13 @@ During the measurement, only these 2 data GBTxs were programmed, due to the fact
 that DCB 007 cannot regain lock if all 6 data GBTxs were all programmed.
 DCB S/N pilot 007, 008 were used.
 
+For DCB 007, \texttt{TX\_RDY} was still almost always asserted even if the
+\SI{2.5}{\volt} rail was turned off, and was reasserted every 2 seconds.
+
+For DCB 008, if the \SI{2.5}{\volt} was turned off, \texttt{TX\_RDY} was never
+asserted, until the connection was restored; if only unplugging the master's
+fibers, its behavior was the same as that of DCB 007.
+
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\linewidth]
