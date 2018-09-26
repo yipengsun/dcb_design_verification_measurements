@@ -1,60 +1,29 @@
-# Set default programs for compiling, viewing, and archiving
-VIEW_PDF	:=	zathura
-PACK_ZIP	:=	apack
-TEX_COMP	:=	xelatex
-MAKE_BIB	:=	biber
-UPDT_VCS	:=	git
+# Author: Yipeng Sun <syp at umd dot edu>
+#
+# Based on: https://tex.stackexchange.com/questions/40738/how-to-properly-make-a-latex-project
+# Last Change: Wed Sep 26, 2018 at 05:47 PM -0400
 
-# Basic variables
-BASEFILE	?=	$(basename $(wildcard *.tex))
-TEX_FILE	:=	$(BASEFILE).tex
-BIB_FILE	:=	$(BASEFILE).bib
-TMP_FILE	:=	$(BASEFILE)-print.tex
-PDF_FILE	:=	$(BASEFILE).pdf
-ZIP_FILE	:=	$(BASEFILE).zip
-VCS_FILE	:=	.$(UPDT_VCS)
-GEN_FILE	:=	*.swp *.bak *.out *.bbl *.blg *.log *.aux *.bcf *.xml *.snm *.toc *.vrb *.nav _minted* *.lof
+# Set default programs for compiling and archiving
+MAKE_TEX	:=	lualatex
+ZIP_FILE	:=	notes-umd-phys-jawahery-18summer.zip
 
-# If version control exists, run corresponding command to generate info.
-ifeq ($(wildcard $(VCS_FILE)),)
-	vcsExists = @echo "No '$(VCS_FILE)' found. Skipping..."
-else
-	vcsExists = @$(UPDT_VCS) checkout
-endif
+# We assume if the generated file is newer than the source, then it is good enough.
+.PHONY: all clean pack
 
-# If '.bib' exists, run corresponding command to generate bibliography.
-ifeq ($(wildcard $(BIB_FILE)),)
-	bibExists = @echo "No '$(BIB_FILE)' found. Skipping..."
+all: dcb_design_verification_measurements.pdf
 
-else
-	define bibExists
-		@$(2) $(1);
-		@$(MAKE_BIB) $(basename $(1));
-endef
-endif
-
-# Main compile function
-define compileTeX
-	$(call vcsExists)
-	$(call bibExists, $(1), $(2))
-	@$(2) $(1);
-	@$(2) $(1);
-endef
-
-pdf:
-	$(call compileTeX, $(TEX_FILE), $(TEX_COMP))
-
-view:
-	$(VIEW_PDF) $(PDF_FILE)
+dcb_design_verification_measurements.pdf: dcb_design_verification_measurements.tex
+	@latexmk -pdf \
+		-pdflatex="$(MAKE_TEX) -interaction=nonstopmode -synctex=1" \
+		-use-make \
+		-jobname=build/dcb_design_verification_measurements \
+		dcb_design_verification_measurements
+	@mv build/dcb_design_verification_measurements.pdf .
+	@mv build/dcb_design_verification_measurements.synctex.gz .
 
 clean:
-	@echo "Cleaning generated files during compilation..."
-	@for tmp in $(GEN_FILE); do				\
-		find . -name $$tmp | xargs rm -rf;	\
-	done
+	@rm -rf build/*
 
-pack: clean
+pack:
 	@echo "Packing all files into a zip bundle..."
-	@apack $(ZIP_FILE) ./
-
-all: pdf pack
+	@apack $(ZIP_FILE) ./Makefile ./README.md ./pkgs ./*.tex ./*.pdf
