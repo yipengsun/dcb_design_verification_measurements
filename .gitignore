@@ -1,10 +1,4 @@
-*.aux
-*.out
-*.log
-*.zip
-*.toc
-*.jpg
 *.pdf
-_minted*
-*.lof
 *.gz
+*.zip
+build
