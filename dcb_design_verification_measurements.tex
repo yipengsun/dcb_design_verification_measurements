@@ -354,4 +354,43 @@ fibers, its behavior was the same as that of DCB 007.
 \end{figure}
 
 
+\section{Power-on reset voltage}
+We used two probes, one probing the \SI{1.5}{\volt} rail voltage (Green), the
+other probe the voltage of the \texttt{MC\_RESET\_B} pin.
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}{0.8\linewidth}
+    \begin{tikzpicture}[boximg]
+        \node [anchor=south west] (main) {
+            \includegraphics[width=\linewidth]
+                {./res/power_on_reset/power_on_reset.jpg}
+        };
+        \begin{scope}[x=(main.south east),y=(main.north west)]
+            \node [draw,red,minimum height=6em, minimum width=3em] (zoombox1)
+                at (0.26,0.36) {};
+        \end{scope}
+    \end{tikzpicture}
+    \caption{}
+    \end{subfigure}
+    %
+    \\[0.5\baselineskip]
+    %
+    \begin{subfigure}{0.5\linewidth}
+    \begin{tikzpicture}[boximg,red]
+        \node (zoom1) {
+            \includegraphics[width=\linewidth]
+                {./res/power_on_reset/power_on_reset-zoom.jpg}
+        };
+        \draw (zoom1.south west) rectangle (zoom1.north east);
+    \end{tikzpicture}
+    \caption{}
+    \end{subfigure}
+    \caption[Regain of lock transient current]{
+        Both channels have very similar time constant.
+        This might be the issue that causes unstable power-up.
+    }
+\end{figure}
+
+
 \end{document}
