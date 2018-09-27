@@ -386,9 +386,29 @@ other probe the voltage of the \texttt{MC\_RESET\_B} pin.
     \end{tikzpicture}
     \caption{}
     \end{subfigure}
-    \caption[Regain of lock transient current]{
+    \caption[Power-on vs. reset]{
         Both channels have very similar time constant.
+        Sorensen XT-76 was used to supply \SI{1.5}{\volt}.
         This might be the issue that causes unstable power-up.
+        Measured on 012.
+    }
+\end{figure}
+
+Later, we realized that the Rigol, which has a slightly faster time constant,
+and can turn on all channels at once, can combine 2 channels so that it can
+supply current up to \SI{6}{\ampere}. We changed to the oldest board, and redid
+the measurement.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\linewidth]
+        {./res/power_on_reset/power_on_reset-008.png}
+    \caption[Power-on vs. reset, oldest board]{
+        Both channels still have very similar time constant.
+        Rigol was used to supply \SI{1.5}{\volt}.
+        After the switch, this board has a higher success (being in state 5)
+        rate of power-up.
+        Measured on 008.
     }
 \end{figure}
 
