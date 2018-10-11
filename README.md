@@ -1,4 +1,4 @@
-# DCB design verification measurements documentation [![Build status](https://travis-ci.com/umd-lhcb/dcb_design_verification_measurements.svg?master)](https://travis-ci.com/umd-lhcb)
+# DCB design verification measurements documentation [![Build status](https://travis-ci.com/ypsun-umd/dcb_design_verification_measurements.svg?master)](https://travis-ci.com/ypsun-umd)
 We collect all measurements for DCB design verification propose and compile
 them into a single documentation.
 
