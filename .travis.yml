@@ -1,28 +1,21 @@
+sudo: required
+language: generic
+services: docker
+
 notifications:
     email: false
-
-cache:
-    directories:
-        - "$HOME/miniconda"
-        - "$HOME/.cache/Tectonic"
-
-install:
-    - export PATH="$HOME/miniconda/bin:$PATH"
-    - if ! command -v conda > /dev/null; then
-          wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-          bash miniconda.sh -b -p $HOME/miniconda -u;
-          conda config --add channels conda-forge;
-          conda config --set always_yes yes;
-          conda update --all;
-          conda install tectonic;
-      fi
-    - conda info -a
 
 script:
     - cp ./ci/post-xxx-sample.txt ./.git/hooks/post-checkout
     - chmod +x ./.git/hooks/post-checkout
     - git checkout
-    - tectonic ./dcb_design_verification_measurements.tex
+    - docker pull dxjoke/tectonic-docker
+    - |
+      docker run \
+      --mount src=$TRAVIS_BUILD_DIR,target=/usr/src/tex,type=bind \
+      dxjoke/tectonic-docker \
+      /bin/sh -c \
+      "tectonic ./dcb_design_verification_measurements.tex"
 
 deploy:
     provider: releases
