@@ -9,6 +9,3 @@ locally with:
 ```
 make pdf
 ```
-
-If you are building this project for the first time, please create `build`
-directory under the project's root directory.
