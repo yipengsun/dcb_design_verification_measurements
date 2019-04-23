@@ -26,4 +26,4 @@ deploy:
     skip_cleanup: true
     on:
         tags: true
-        repo: ypsun-umd/dcb_design_verification_measurements
+        repo: yipengsun/dcb_design_verification_measurements
