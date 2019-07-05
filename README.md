@@ -1,4 +1,4 @@
-# DCB design verification measurements documentation [![Build status](https://travis-ci.com/yipengsun/dcb_design_verification_measurements.svg?master)](https://travis-ci.com/yipengsun)
+# DCB design verification measurements documentation [![Build status](https://travis-ci.com/yipengsun/dcb_design_verification_measurements.svg?master)](https://travis-ci.com/yipengsun/dcb_design_verification_measurements)
 We collect all measurements for DCB design verification propose and compile
 them into a single documentation.
 
