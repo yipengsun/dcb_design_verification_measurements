@@ -83,5 +83,10 @@
             })
           ];
         };
+        shellHook = ''
+          # Fix date problem for LuaLaTeX
+          # self.lastModified is the date of last commit
+          SOURCE_DATE_EPOCH=${toString self.lastModified}
+        '';
       });
 }
