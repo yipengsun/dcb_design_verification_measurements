@@ -82,11 +82,15 @@
                 ;
             })
           ];
+
+          shellHook = ''
+            export TEXMFHOME=.cache
+            export TEXMFVAR=.cache/texmf-var
+
+            # Fix date problem for LuaLaTeX
+            # self.lastModified is the date of last commit
+            export SOURCE_DATE_EPOCH=${toString self.lastModified}
+          '';
         };
-        shellHook = ''
-          # Fix date problem for LuaLaTeX
-          # self.lastModified is the date of last commit
-          SOURCE_DATE_EPOCH=${toString self.lastModified}
-        '';
       });
 }
