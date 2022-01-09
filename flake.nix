@@ -55,6 +55,7 @@
         devShell = pkgs.mkShell.override { stdenv = pkgs.stdenvNoCC; } {
           name = "dcb_design_verfication_doc";
           buildInputs = [
+            pkgs.gitinfo-hook
             (pkgs.texlive.combine {
               inherit (pkgs.texlive)
                 scheme-basic
