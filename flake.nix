@@ -12,7 +12,25 @@
     {
       overlay = import ./nix/overlay.nix;
     } //
-    flake-utils.lib.eachDefaultSystem (system:
+    # Meh, this pre-commit check is pretty heavy on dependency
+    # Still preserved as it may be useful for a future project
+    #
+    # FIXME: I need to explicitly list platforms, otherwise I got this:
+    #          error: attribute 'aarch64-darwin' missing
+    #
+    #                 at /nix/store/xq146v7sp6xrya78dfa546ppr0f4kwl5-source/flake.nix:24:30:
+    #
+    #                     23|         checks = {
+    #                     24|           pre-commit-check = pre-commit-hooks.lib.${system}.run {
+    #                       |                              ^
+    #                     25|             src = ./.;
+    #
+    #        presumbly this is because pre-commit-hooks doesn't support Apple M1 yet?
+    #
+    #        also, the check would fail with error code 1, so don't run:
+    #          nix flake check
+    #        yet!
+    flake-utils.lib.eachSystem ["x86_64-linux" "x86_64-darwin"] (system:
       let
         pkgs = import nixpkgs {
           inherit system;
@@ -20,14 +38,28 @@
         };
       in
       {
+        checks = {
+          pre-commit-check = pre-commit-hooks.lib.${system}.run {
+            src = ./.;
+            hooks = {
+              gitinfo = {
+                enable = true;
+                name = "Generate gitinfo version file";
+                entry = "${pkgs.gitinfo-hook}/bin/gitinfo-hook";
+                files = "\\.(tex)$";
+                pass_filenames = false;
+              };
+            };
+          };
+        };
         devShell = pkgs.mkShell.override { stdenv = pkgs.stdenvNoCC; } {
           name = "dcb_design_verfication_doc";
           buildInputs = [
-            pkgs.gitinfo-hook
             (pkgs.texlive.combine {
               inherit (pkgs.texlive)
                 scheme-basic
                 # Explicit dependencies
+                latexmk
                 gitinfo2
                 # Implicit dependencies
                 ;
