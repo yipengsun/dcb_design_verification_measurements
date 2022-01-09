@@ -9,19 +9,15 @@ jobs:
     if: "!contains(github.event.head_commit.message, 'skip ci')"
     runs-on: ubuntu-latest
     steps:
-    - uses: szenius/set-timezone@v1.0
-      with:
-          timezoneLinux: "Asia/Shanghai"
-
     - uses: actions/checkout@v2
     - uses: cachix/install-nix-action@v15
       with:
           extra_nix_config: |
               access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
 
-    - run: nix develop --no-update-lock-file -c latexmk
+    - run: nix develop --no-update-lock-file -c make
     - run: mkdir output
-    - run: find . -maxdepth 2 -name '*.pdf' -exec cp '{}' output \;
+    - run: find . -maxdepth 1 -name '*.pdf' -exec cp '{}' output \;
     - run: ls output
 
     - uses: softprops/action-gh-release@v1
