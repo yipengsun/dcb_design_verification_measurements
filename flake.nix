@@ -89,7 +89,8 @@
 
             # Fix date problem for LuaLaTeX
             # self.lastModified is the date of last commit
-            export SOURCE_DATE_EPOCH=${toString self.lastModified}
+            #export SOURCE_DATE_EPOCH=${toString self.lastModified}
+            export SOURCE_DATE_EPOCH=$(date -d "2019-04-23" +%s)
           '';
         };
       });
