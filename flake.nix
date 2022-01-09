@@ -61,8 +61,24 @@
                 scheme-basic
                 # Explicit dependencies
                 latexmk
+                refman
                 gitinfo2
+                mathtools
+                cleveref
+                caption
+                microtype
+                xcolor
+                framed
+                booktabs
+                siunitx
+                placeins
+                chngcntr
                 # Implicit dependencies
+                etoolbox
+                xstring
+                eso-pic
+                pgf      # <- tikz
+                pgfopts  # <- also tikz
                 ;
             })
           ];
