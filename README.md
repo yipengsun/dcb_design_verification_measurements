@@ -6,9 +6,9 @@ them into a single documentation.
 
 ## Build
 
-This project utilizes the Travis CI to build and release new pdf files on new
-tags. Alternatively, one can clone/download this repository and build pdf files
-locally with:
-```
-make
-```
+This project utilizes `nix` (with `flake`) to build new pdf files.
+The build procedure is the following:
+
+1. Install `nix` with `flake` support
+2. Go to project root, run `nix develop`
+3. In the resulting shell, run `make`
